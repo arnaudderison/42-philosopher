@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:29:20 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 18:21:05 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:04:40 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,42 @@ static void	helper(void)
     \n\n" RESET);
 	printf("Arguments:\n");
 	printf("  \t number_of_philosophers:   The number of philosophers and also \
-    the number of forks\n");
+the number of forks\n");
 	printf("  time_to_die (in milliseconds):   If a philosopher doesn't start \
-    eating 'time_to_die'\n");
+eating 'time_to_die'\n");
 	printf("                                   milliseconds after starting their\
-     last meal or the beginning\n");
+last meal or the beginning\n");
 	printf("                                   of the simulation, it dies\n");
 	printf("    time_to_eat (in milliseconds): The time it takes for a \
-    philosopher to eat\n");
+philosopher to eat\n");
 	printf("  time_to_sleep (in milliseconds): The time the philosopher will \
-    spend sleeping\n");
+spend sleeping\n");
 	printf("  [number_of_times_each_philosopher_eat] (optional argument):\n");
 	printf("                                  If all philosophers eat at least \
-    'number_of_times_each_philosopher_must_eat'\n");
+'number_of_times_each_philosopher_must_eat'\n");
 	printf("                                  times,\
-		the simulation will stop. If not specified, the simulation\n");
+the simulation will stop. If not specified, the simulation\n");
 	printf("                                  will stop only at the death of a \
-    philosopher.\n");
+philosopher.\n");
 	printf(BLUE "\nAll arguments must be positive integers.\n" RESET);
 }
 
-int	error(enum error err)
+void	error(enum error err)
 {
 	if (err == SUCCESS)
-		exit(EXIT_SUCCESS);
+		return ;
 	if (err == COUNT_ARGS)
 		ft_putstr_fd(RED "⚠️  Invalid number of arguments\n" RESET, 2);
-    if (err == INVALID_ARGS)
+	if (err == INVALID_ARGS)
 		ft_putstr_fd(RED "⚠️  Invalid arguments\n" RESET, 2);
-    if (err == UNKNOWN)
+	if (err == LIMIT_PHILO)
+		ft_putstr_fd(RED "⚠️  The number of philo must be <= 200\n" RESET, 2);
+	if (err == MALLOC)
+	{
+		ft_putstr_fd(RED "🆘  Malloc error...\n" RESET, 2);
+		exit(EXIT_FAILURE);
+	}
+	if (err == UNKNOWN)
 		ft_putstr_fd(RED "🆘  Internal error...\n" RESET, 2);
 	helper();
 	exit(EXIT_SUCCESS);

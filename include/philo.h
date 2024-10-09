@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:02:08 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 18:09:51 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:45:36 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@
 # define BLUE "\x1B[34m"
 # define RESET "\x1B[0m"
 
+#define MAX_PHILOSOPHERS 200
 
 enum error 
 {
     COUNT_ARGS,
     INVALID_ARGS,
-    SUCCESS,
+    LIMIT_PHILO,
+    MALLOC,
     UNKNOWN,
+    SUCCESS,
 };
 
 typedef struct s_philo
@@ -66,8 +69,12 @@ typedef struct s_data
 
 //utils
 int	ft_isdigit(int character);
+int	ft_atoi(const char *str);
 
 //philo
-int error(enum error err);
+void error(enum error err);
+int data_init(t_data *data, char **argv);
+long long	timestamp(void);
+int	ft_usleep(unsigned int ms);
 
 #endif

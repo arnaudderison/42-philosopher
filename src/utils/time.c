@@ -1,47 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 17:00:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 19:11:42 by aderison         ###   ########.fr       */
+/*   Created: 2024/10/09 19:42:39 by aderison          #+#    #+#             */
+/*   Updated: 2024/10/09 19:44:50 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	valid_args(int argc, char **argv)
+long long	timestamp(void)
 {
-	int	i;
-	int	j;
+	struct timeval	tv;
 
-	if (argc != 5 && argc != 6)
-		return (COUNT_ARGS);
-	if (!argv || !*argv)
-		return (UNKNOWN);
-	i = 0;
-	while (argv[++i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (!ft_isdigit(argv[i][j]))
-				return (INVALID_ARGS);
-			j++;
-		}
-	}
-	return (SUCCESS);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-int	main(int argc, char **argv)
+int	ft_usleep(unsigned int ms)
 {
-	int		err;
-	t_data	data;
+	long long	start;
 
-	err = valid_args(argc, argv);
-	error(err);
-	data_init(&data, argv);
+	start = timestamp();
+	while ((timestamp() - start) < ms)
+		usleep(ms / 10);
 	return (0);
 }
