@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:02:08 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 19:45:36 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:39:14 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ enum error
     INVALID_ARGS,
     LIMIT_PHILO,
     MALLOC,
+    NULL_PTR,
     UNKNOWN,
     SUCCESS,
 };
@@ -62,19 +63,28 @@ typedef struct s_data
 	long long		t_start;
 	t_philo			*philo;
 	pthread_mutex_t	m_print;
-	pthread_mutex_t	m_stop;
 	pthread_mutex_t	m_eat;
+	pthread_mutex_t	m_stop;
 	pthread_mutex_t	m_dead;
 }		t_data;
 
 //utils
 int	ft_isdigit(int character);
 int	ft_atoi(const char *str);
+long long	timestamp(void);
+int	ft_usleep(unsigned int ms);
+void print(t_data *data, int id, const char *status);
 
 //philo
 void error(enum error err);
 int data_init(t_data *data, char **argv);
-long long	timestamp(void);
-int	ft_usleep(unsigned int ms);
+void philo_sleep(t_philo *philo);
+void philo_eat(t_philo *philo);
+int is_philo_dead(t_philo *philo);
+void *philo_life(void *phi);
+void philo_thinking(t_philo *philo);
+int	philo_init(t_data *data);
+
+
 
 #endif

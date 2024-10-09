@@ -22,10 +22,10 @@ CYAN=\033[0;36m
 NC=\033[0m
 
 #philo utils
-PHILO_UTILS = $(addprefix utils/, ft_isdigit.c ft_atoi.c)
+PHILO_UTILS = $(addprefix utils/, ft_isdigit.c ft_atoi.c time.c print.c)
 
 #philo main
-PHILO = main.c error.c init.c
+PHILO = main.c error.c init.c actions.c philo.c
 
 #philo sources
 PHILO_SRCS = $(addprefix src/, $(PHILO) $(PHILO_UTILS))

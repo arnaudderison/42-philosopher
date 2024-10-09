@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:29:20 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 19:04:40 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:16:08 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ void	error(enum error err)
 	if (err == MALLOC)
 	{
 		ft_putstr_fd(RED "🆘  Malloc error...\n" RESET, 2);
+		exit(EXIT_FAILURE);
+	}
+    if (err == NULL_PTR)
+	{
+		ft_putstr_fd(RED "🆘  NULL pointer error...\n" RESET, 2);
 		exit(EXIT_FAILURE);
 	}
 	if (err == UNKNOWN)
