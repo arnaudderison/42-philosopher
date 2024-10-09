@@ -21,11 +21,14 @@ YELLOW=\033[1;33m
 CYAN=\033[0;36m
 NC=\033[0m
 
+#philo utils
+PHILO_UTILS = $(addprefix utils/, ft_isdigit.c)
+
 #philo main
-PHILO = main.c 
+PHILO = main.c error.c
 
 #philo sources
-PHILO_SRCS = $(addprefix src/, $(PHILO))
+PHILO_SRCS = $(addprefix src/, $(PHILO) $(PHILO_UTILS))
 PHILO_OBJS = $(PHILO_SRCS:src/%.c=obj/%.o)
 
 # Compilation rules
