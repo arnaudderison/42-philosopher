@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:11:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 23:42:33 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/10 01:42:11 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 int	is_dead(t_philo *philo, int nb)
 {
 	pthread_mutex_lock(&philo->info->m_dead);
+    if (philo->info->stop)
+	{
+		pthread_mutex_unlock(&philo->info->m_dead);
+		return (1);
+	}
 	if (nb)
     {
         pthread_mutex_lock(&philo->info->m_stop);
@@ -41,6 +46,7 @@ void	*check_death(void *phi)
 		pthread_mutex_unlock(&philo->info->m_eat);
 		// pthread_mutex_unlock(&philo->info->m_stop);
 		print(philo->info, philo->id," died");
+        return NULL;
 	}
 	pthread_mutex_unlock(&philo->info->m_eat);
 	// pthread_mutex_unlock(&philo->info->m_stop);
@@ -56,7 +62,7 @@ void *philo_life(void *phi)
     philo = (t_philo*)phi;
     data = philo->info;
     if (philo->id % 2 == 0)
-        ft_usleep(data->t_eat / 10);
+        ft_usleep(data->t_sleep);
     while (!is_dead(philo, 0))
     {
         pthread_create(&t, NULL, check_death, phi);
@@ -69,11 +75,12 @@ void *philo_life(void *phi)
 			{
 				pthread_mutex_unlock(&philo->info->m_stop);
 				is_dead(philo, 1);
+                return NULL;
 			}
 			pthread_mutex_unlock(&philo->info->m_stop);
 			return (NULL);
 		}
     }
-return NULL;
+    return NULL;
 }
 
