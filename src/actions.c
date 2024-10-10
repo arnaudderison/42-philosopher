@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:12:28 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/10 05:00:36 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/10 05:08:35 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	philo_sleep(t_philo *philo)
 {
 	print(philo->info, philo->id, "is sleeping");
 	ft_usleep(philo->info->t_sleep);
+	philo_thinking(philo);
 }
 
 void philo_eat(t_philo *philo)
@@ -79,6 +80,7 @@ void philo_eat(t_philo *philo)
 
     // Add a small delay after eating to give others a chance
     ft_usleep(1);
+	philo_sleep(philo);
 }
 
 void	philo_thinking(t_philo *philo)
