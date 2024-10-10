@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:12:28 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/10 03:44:46 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/10 05:00:36 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void philo_eat(t_philo *philo)
     }
 
     // Anti-famine mechanism: Add a small delay for even-numbered philosophers
-    if (philo->id % 2 == 0)
-    {
-        ft_usleep(philo->info->t_eat / 10);
-    }
+    // if (philo->id % 2 == 0)
+    // {
+    //     ft_usleep(philo->info->t_eat / 10);
+    // }
 
     // Pick up forks
     pthread_mutex_lock(first_fork);
@@ -78,7 +78,7 @@ void philo_eat(t_philo *philo)
     pthread_mutex_unlock(first_fork);
 
     // Add a small delay after eating to give others a chance
-    ft_usleep(philo->info->t_eat / 4);
+    ft_usleep(1);
 }
 
 void	philo_thinking(t_philo *philo)
