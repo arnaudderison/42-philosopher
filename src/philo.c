@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:11:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/11 03:17:07 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:09:17 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*check_death(void *phi)
 		pthread_mutex_unlock(&philo->info->m_eat);
 		pthread_mutex_unlock(&philo->info->m_stop);
 		print(philo->info, philo->id, "died");
-		exit(1);
+		exit(EXIT_SUCCESS);
 		return (NULL);
 	}
 	pthread_mutex_unlock(&philo->info->m_eat);
