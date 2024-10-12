@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 18:33:33 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 22:41:15 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:13:34 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	data_init(t_data *data, char **argv)
 	pthread_mutex_init(&data->m_stop, NULL);
 	data->philo_eat = 0;
 	data->nb_philo = ft_atoi(argv[1]);
+	if(data->nb_philo < 1)
+		return (error(LIMIT_PHILO), 1);
 	data->t_die = ft_atoi(argv[2]);
 	data->t_eat = ft_atoi(argv[3]);
 	data->t_sleep = ft_atoi(argv[4]);

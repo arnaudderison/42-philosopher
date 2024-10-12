@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:29:20 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/09 20:16:08 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/12 19:14:01 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,13 @@ void	error(enum error err)
 	if (err == INVALID_ARGS)
 		ft_putstr_fd(RED "⚠️  Invalid arguments\n" RESET, 2);
 	if (err == LIMIT_PHILO)
-		ft_putstr_fd(RED "⚠️  The number of philo must be <= 200\n" RESET, 2);
+		ft_putstr_fd(RED "⚠️  The number of philo must be > 0 and <= 200\n" RESET, 2);
 	if (err == MALLOC)
-	{
 		ft_putstr_fd(RED "🆘  Malloc error...\n" RESET, 2);
-		exit(EXIT_FAILURE);
-	}
     if (err == NULL_PTR)
-	{
 		ft_putstr_fd(RED "🆘  NULL pointer error...\n" RESET, 2);
-		exit(EXIT_FAILURE);
-	}
 	if (err == UNKNOWN)
 		ft_putstr_fd(RED "🆘  Internal error...\n" RESET, 2);
 	helper();
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }
