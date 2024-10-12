@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:11:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/10 04:14:05 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/11 03:17:07 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	*check_death(void *phi)
 	ft_usleep(philo->info->t_die + 1);
 	pthread_mutex_lock(&philo->info->m_eat);
 	pthread_mutex_lock(&philo->info->m_stop);
-	if (timestamp() - philo->last_eat >= (long)(philo->info->t_die)
+	if (timestamp() - philo->last_eat > (long)(philo->info->t_die)
 		&& !is_dead(philo, 0))
 	{
 		pthread_mutex_unlock(&philo->info->m_eat);
 		pthread_mutex_unlock(&philo->info->m_stop);
-		print(philo->info, philo->id, " died");
+		print(philo->info, philo->id, "died");
 		exit(1);
 		return (NULL);
 	}

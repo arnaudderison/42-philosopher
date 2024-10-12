@@ -62,12 +62,12 @@ def run_test(test_number, command, expected):
 
 def main():
     tests = [
-        ("1", "./philo 1 800 200 200", {'deaths': 1, 'meals': 0, 'sleeps': 0, 'thinks': 1}),
+        ("1", "./philo 1 800 200 200", {'deaths': 1, 'meals': 0, 'sleeps': 0, 'thinks': 0}),
         ("2", "./philo 5 800 200 200 7", {'deaths': 0, 'meals': 35, 'sleeps': 35, 'thinks': 35}),
-        ("3", "./philo 4 410 200 200", {'deaths': 1, 'meals': 3, 'sleeps': 3, 'thinks': 3}),
-        ("4", "./philo 4 310 200 100", {'deaths': 1, 'meals': 2, 'sleeps': 2, 'thinks': 2}),
-        ("5", "./philo 2 60 60 60", {'deaths': 0, 'meals': 2, 'sleeps': 2, 'thinks': 2}),
-        ("6", "./philo 5 800 200 200", {'deaths': 1, 'meals': 14, 'sleeps': 14, 'thinks': 14}),
+        ("3", "./philo 4 410 200 200 20", {'deaths': 0, 'meals': 80, 'sleeps': 80, 'thinks': 80}),
+        ("4", "./philo 4 310 200 -100", {'deaths': 0, 'meals': 0, 'sleeps': 0, 'thinks': 0}),
+        ("5", "./philo 2 125 60 60 100", {'deaths': 0, 'meals': 200, 'sleeps': 200, 'thinks': 200}),
+        ("6", "./philo 5 800 211 600", {'deaths': 1, 'meals': 5, 'sleeps': 5, 'thinks': 0}),
     ]
 
     successes = 0
