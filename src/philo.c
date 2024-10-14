@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
+/*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:11:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/12 19:09:17 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:50:17 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ void	*check_death(void *phi)
 		&& !is_dead(philo, 0))
 	{
 		pthread_mutex_unlock(&philo->info->m_eat);
-		pthread_mutex_unlock(&philo->info->m_stop);
 		print(philo->info, philo->id, "died");
+		freeall(philo->info);
 		exit(EXIT_SUCCESS);
-		return (NULL);
 	}
 	pthread_mutex_unlock(&philo->info->m_eat);
 	pthread_mutex_unlock(&philo->info->m_stop);

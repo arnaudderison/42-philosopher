@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
+/*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 18:33:33 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/12 19:13:34 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:14:25 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	philo_init(t_data *data)
 			data->philo[i].fork_r = &data->philo[0].fork_l;
 		else
 			data->philo[i].fork_r = &data->philo[i + 1].fork_l;
-		if (pthread_create(&data->philo[i].thread, NULL, \
-				philo_life, (void*)&data->philo[i]) != 0)
+		if (pthread_create(&data->philo[i].thread, NULL, philo_life,
+				(void *)&data->philo[i]) != 0)
 			return (-1);
 	}
 	i = -1;
@@ -53,7 +53,7 @@ int	data_init(t_data *data, char **argv)
 	pthread_mutex_init(&data->m_stop, NULL);
 	data->philo_eat = 0;
 	data->nb_philo = ft_atoi(argv[1]);
-	if(data->nb_philo < 1)
+	if (data->nb_philo < 1)
 		return (error(LIMIT_PHILO), 1);
 	data->t_die = ft_atoi(argv[2]);
 	data->t_eat = ft_atoi(argv[3]);

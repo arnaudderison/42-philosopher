@@ -1,7 +1,7 @@
 #Variable general
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -Iinclude/
 
 # Détection du système d'exploitation
@@ -22,7 +22,7 @@ CYAN=\033[0;36m
 NC=\033[0m
 
 #philo utils
-PHILO_UTILS = $(addprefix utils/, ft_isdigit.c ft_atoi.c time.c print.c)
+PHILO_UTILS = $(addprefix utils/, ft_isdigit.c ft_atoi.c time.c print.c ft_free.c)
 
 #philo main
 PHILO = main.c error.c init.c actions.c philo.c
