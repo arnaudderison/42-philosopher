@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 18:33:33 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/14 16:14:25 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:18:02 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	data_init(t_data *data, char **argv)
 	data->t_die = ft_atoi(argv[2]);
 	data->t_eat = ft_atoi(argv[3]);
 	data->t_sleep = ft_atoi(argv[4]);
+	data->n_eat = -1;
 	data->stop = 0;
 	if (argv[5])
 		data->n_eat = ft_atoi(argv[5]);
