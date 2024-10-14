@@ -6,7 +6,7 @@
 /*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:00:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/14 16:15:28 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:32:27 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	freeall(t_data *data)
 	pthread_mutex_destroy(&data->m_print);
 	pthread_mutex_destroy(&data->m_eat);
 	pthread_mutex_destroy(&data->m_dead);
-	pthread_mutex_unlock(&data->m_stop);
 	pthread_mutex_destroy(&data->m_stop);
 }
 
@@ -62,7 +61,6 @@ int	main(int argc, char **argv)
 	error(err);
 	data_init(&data, argv);
 	philo_init(&data);
-	pthread_mutex_lock(&data.m_stop);
 	freeall(&data);
 	return (0);
 }
