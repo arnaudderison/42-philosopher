@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:49:36 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/14 14:53:35 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 22:17:35 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_free(unsigned int count, ...)
 		if (*tmp)
 		{
 			free(*tmp);
-			*tmp = NULL;
+			// (*tmp) = NULL;
 		}
 	}
 	va_end(args);

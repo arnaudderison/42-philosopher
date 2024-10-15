@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:11:58 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/14 17:51:58 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 22:16:00 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,24 @@ int	is_dead(t_philo *philo, int nb)
 
 void	*check_death(void *phi)
 {
-	t_philo	*philo;
+	t_philo		*philo;
+	long long	last;
 
 	philo = (t_philo *)phi;
 	ft_usleep(philo->info->t_die + 1);
 	pthread_mutex_lock(&philo->info->m_eat);
-	if (timestamp() - philo->last_eat > (long)(philo->info->t_die)
-		&& !is_dead(philo, 0) && philo->id != 0)
+	last = philo->last_eat;
+	if (timestamp() - last > (long)(philo->info->t_die) && !is_dead(philo, 0)
+		&& philo->id != 0)
 	{
 		pthread_mutex_unlock(&philo->info->m_eat);
+		pthread_mutex_lock(&philo->info->m_stop);
+		if (philo->info->stop)
+		{
+			pthread_mutex_unlock(&philo->info->m_stop);
+			return (NULL);
+		}
+		pthread_mutex_unlock(&philo->info->m_stop);
 		is_dead(philo, 1);
 		print(philo->info, philo->id, "died");
 		freeall(philo->info);
@@ -64,9 +73,10 @@ void	*philo_life(void *phi)
 		pthread_create(&t, NULL, check_death, phi);
 		philo_eat(philo);
 		pthread_detach(t);
-		if (philo->times_eaten == philo->info->n_eat && philo->info->n_eat \
-		!= -1)
+		if (philo->times_eaten == philo->info->n_eat && philo->info->n_eat !=
+			-1)
 		{
+			write(1, "life\n", 5);
 			is_dead(philo, 1);
 			return (NULL);
 		}

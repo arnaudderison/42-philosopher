@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 20:12:28 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/14 16:12:00 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:51:43 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	philo_sleep(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->info->m_stop);
+	if (philo->info->stop)
+		return ;
+	pthread_mutex_unlock(&philo->info->m_stop);
 	print(philo->info, philo->id, "is sleeping");
 	ft_usleep(philo->info->t_sleep);
 	philo_thinking(philo);
@@ -22,6 +26,10 @@ void	philo_sleep(t_philo *philo)
 static void	eat_process(t_philo *philo, pthread_mutex_t *first_fork,
 		pthread_mutex_t *second_fork)
 {
+	pthread_mutex_lock(&philo->info->m_stop);
+	if (philo->info->stop)
+		return ;
+	pthread_mutex_unlock(&philo->info->m_stop);
 	pthread_mutex_lock(&(philo->info->m_eat));
 	philo->is_eating = true;
 	philo->times_eaten++;
@@ -67,5 +75,9 @@ void	philo_eat(t_philo *philo)
 
 void	philo_thinking(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->info->m_stop);
+	if (philo->info->stop)
+		return ;
+	pthread_mutex_unlock(&philo->info->m_stop);
 	print(philo->info, philo->id, "is thinking");
 }

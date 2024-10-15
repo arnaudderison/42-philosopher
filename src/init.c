@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aderison <aderison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aderison <aderison@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 18:33:33 by aderison          #+#    #+#             */
-/*   Updated: 2024/10/14 17:19:55 by aderison         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:52:59 by aderison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	philo_init(t_data *data)
 			return (-1);
 	}
 	i = -1;
-	while (++i < data->nb_philo)
+	while (++i < data->nb_philo - 1)
 		if (pthread_join(data->philo[i].thread, NULL) != 0)
 			return (-1);
 	return (0);
